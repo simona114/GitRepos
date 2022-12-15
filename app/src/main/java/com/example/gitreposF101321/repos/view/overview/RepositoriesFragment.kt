@@ -30,21 +30,19 @@ class RepositoriesFragment : Fragment(), IRepositoryClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //todo:replace with data from the server
-        val myRepos = listOf(
-            RepositoryModel("1", "Title1", "Owner"),
-            RepositoryModel("2", "Title2", "Owner")
-        )
-
-        repoAdapter = RepositoryAdapter(this)
-        repoAdapter?.injectList(myRepos)
-
-        binding.rvRepositories.apply {
-            adapter = repoAdapter
-            layoutManager = LinearLayoutManager(activity)
-        }
-
         reposViewModel.requestReposWhenOnline()
+
+        reposViewModel.liveDataRepos.observe(viewLifecycleOwner) { reposList ->
+            repoAdapter = RepositoryAdapter(this)
+
+            repoAdapter?.injectList(reposList)
+
+            binding.rvRepositories.apply {
+                adapter = repoAdapter
+                layoutManager = LinearLayoutManager(activity)
+            }
+
+        }
 
     }
 

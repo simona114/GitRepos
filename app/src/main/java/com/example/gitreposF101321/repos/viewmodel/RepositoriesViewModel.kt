@@ -6,7 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.gitreposF101321.repos.data.ReposRepository
-import com.example.gitreposF101321.repos.data.remote.RepositoryRemoteModel
+import com.example.gitreposF101321.repos.data.domainmodel.RepositoryModel
+import com.example.gitreposF101321.repos.data.remote.toRepositoryModel
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
@@ -15,15 +16,20 @@ class RepositoriesViewModel(
 ) :
     ViewModel() {
 
-    private var _liveDataRepos = MutableLiveData<List<RepositoryRemoteModel>>()
-    val liveDataRepos: LiveData<List<RepositoryRemoteModel>> = _liveDataRepos
+    private var _liveDataRepos = MutableLiveData<List<RepositoryModel>>()
+    val liveDataRepos: LiveData<List<RepositoryModel>> = _liveDataRepos
 
     fun requestReposWhenOnline() {
         viewModelScope.launch {
 //todo:optimise the error handling
             try {
                 val result = repository.getNewRepos()
-                _liveDataRepos.postValue(result)
+                result.map { repoRemoteModel -> repoRemoteModel.toRepositoryModel() }
+                    .let { repoModel ->
+                        _liveDataRepos.postValue(
+                            repoModel as List<RepositoryModel>?
+                        )
+                    }
 
             } catch (e: HttpException) {
                 e.message?.let { Log.e(ReposRepository::class.java.simpleName, it) }
