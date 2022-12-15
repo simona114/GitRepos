@@ -25,9 +25,9 @@ class RepositoriesViewModel(
             try {
                 val result = repository.getNewRepos()
                 result.map { repoRemoteModel -> repoRemoteModel.toRepositoryModel() }
-                    .let { repoModel ->
+                    .let { repoModelsList ->
                         _liveDataRepos.postValue(
-                            repoModel as List<RepositoryModel>?
+                            repoModelsList
                         )
                     }
 
