@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.gitreposF101321.databinding.ItemRepositoryBinding
 import com.example.gitreposF101321.repos.data.domainmodel.RepositoryModel
 
-class RepositoryAdapter() : RecyclerView.Adapter<RepositoryAdapter.RepositoryViewHolder>() {
+class RepositoryAdapter(var onClick:IRepositoryClickListener) : RecyclerView.Adapter<RepositoryAdapter.RepositoryViewHolder>() {
     var repositoryList = listOf<RepositoryModel>()
 
     inner class RepositoryViewHolder(private val repositoriesBinding: ItemRepositoryBinding) :
@@ -18,6 +18,10 @@ class RepositoryAdapter() : RecyclerView.Adapter<RepositoryAdapter.RepositoryVie
 
                 tvRepositoryTitle.text = repository.title
                 tvRepositoryOwner.text = repository.owner
+
+                itemView.setOnClickListener {
+                    onClick.onRepositoryClick(repository.id)
+                }
             }
         }
     }

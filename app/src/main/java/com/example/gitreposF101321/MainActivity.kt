@@ -23,6 +23,8 @@ class MainActivity : AppCompatActivity() {
 
         //Enable navigation via back arrow on phone
         navController.enableOnBackPressed(true)
+
+//        setupActionBarWithNavController(navController)
     }
 
     override fun onSupportNavigateUp(): Boolean {
