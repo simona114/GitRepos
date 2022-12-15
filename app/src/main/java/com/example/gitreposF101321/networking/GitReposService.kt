@@ -5,6 +5,6 @@ import retrofit2.http.GET
 
 interface GitReposService {
 
-    @GET("jokes/random")
+    @GET("repos")
     suspend fun getRepositories():List<RepositoryRemoteModel>
 }
