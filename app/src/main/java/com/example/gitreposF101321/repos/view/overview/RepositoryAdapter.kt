@@ -18,8 +18,7 @@ class RepositoryAdapter(var onClick: IRepositoryClickListener) :
                 val res = itemView.resources
 
                 tvRepositoryTitle.text = repository.title
-                //todo:fix
-                tvRepositoryOwner.text = repository.language
+                tvRepositoryOwner.text = repository.owner.name
 
                 itemView.setOnClickListener {
                     onClick.onRepositoryClick(repository.id)
