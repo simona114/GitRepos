@@ -2,6 +2,6 @@
     <string name="app_name">GitRepos</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title">Title</string>
-    <string name="owner">Owner</string>
+    <string name="repo_title">Title</string>
+    <string name="repo_language">Language</string>
 </resources>

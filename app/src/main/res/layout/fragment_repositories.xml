@@ -7,6 +7,7 @@
     tools:context=".repos.view.overview.RepositoriesFragment">
 
  <androidx.recyclerview.widget.RecyclerView
+     tools:listitem="@layout/item_repository"
      android:id="@+id/rvRepositories"
      android:layout_width="match_parent"
      android:layout_height="match_parent"
