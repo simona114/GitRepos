@@ -8,6 +8,6 @@
     <fragment
         android:id="@+id/repositoriesFragment"
         android:name="com.example.gitreposF101321.repos.view.overview.RepositoriesFragment"
-        android:label="fragment_repositories"
+        android:label="@string/repositories"
         tools:layout="@layout/fragment_repositories" />
 </navigation>
