@@ -6,4 +6,6 @@ class ReposRepository(private val remoteDataSource: RepositoriesRemoteDataSource
 
     suspend fun getNewRepos() = remoteDataSource.getAllRepositories()
 
+    suspend fun getNewCommitsForRepo(repo:String) = remoteDataSource.getAllCommitsForRepo(repo)
+
 }

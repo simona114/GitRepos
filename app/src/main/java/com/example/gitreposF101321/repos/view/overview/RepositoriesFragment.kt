@@ -32,6 +32,19 @@ class RepositoriesFragment : Fragment(), IRepositoryClickListener {
 
         reposViewModel.requestReposWhenOnline()
 
+        //todo:replace with clicked repo's name
+        val testRepoName = "GitRepos"
+        reposViewModel.requestRepoCommitsWhenOnline(testRepoName)
+
+        //todo:move to details fragment
+        reposViewModel.liveDataCommits.observe(viewLifecycleOwner){
+            commitsList ->
+            commitsList.forEach {
+                commit ->
+                Log.d("mCommit", "${commit.message} ")
+            }
+        }
+
         reposViewModel.liveDataRepos.observe(viewLifecycleOwner) { reposList ->
             repoAdapter = RepositoryAdapter(this)
 
