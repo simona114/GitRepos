@@ -41,14 +41,13 @@ class RepositoryDetailsFragment : Fragment() {
             reposViewModel.requestRepoCommitsWhenOnline(selectedRepo.title)
 
             binding.apply {
-                tvRepoOwner.text = selectedRepo.owner.name
-                tvRepoLanguage.text = selectedRepo.language
+                tvRepoOwner.text = getString(R.string.repo_owner, selectedRepo.owner.name)
+                tvRepoLanguage.text = getString(R.string.repo_language, selectedRepo.language)
 
                 val customizedString = SpannableStringBuilder()
-                   .append(getString(R.string.repo_link)).
-                    bold {
-                    underline { append(selectedRepo.link) }
-                }
+                    .append(getString(R.string.repo_link)).bold {
+                        underline { append(selectedRepo.link) }
+                    }
                 tvRepoLink.text = customizedString
 
                 tvRepoLink.setOnClickListener {
