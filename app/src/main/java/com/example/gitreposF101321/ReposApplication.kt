@@ -1,6 +1,7 @@
 package com.example.gitreposF101321
 
 import android.app.Application
+import com.example.gitreposF101321.di.di
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
