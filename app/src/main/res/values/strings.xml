@@ -8,4 +8,5 @@
     <string name="repository_details">Repository details</string>
     <string name="repo_owner">owner:  %1$s</string>
     <string name="repo_link">link: </string>
+    <string name="repo_commits">commits:</string>
 </resources>
