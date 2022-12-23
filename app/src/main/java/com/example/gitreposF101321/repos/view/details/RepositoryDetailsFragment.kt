@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.gitreposF101321.databinding.FragmentRepositoryDetailsBinding
 import com.example.gitreposF101321.repos.viewmodel.RepositoriesViewModel
@@ -39,6 +40,14 @@ class RepositoryDetailsFragment : Fragment() {
                     commit ->
                 Log.d("mCommit", "${commit.message} ")
             }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        reposViewModel.liveDataSelectedRepoTitle.observe(viewLifecycleOwner) { selectedRepoTitle ->
+            (activity as AppCompatActivity).supportActionBar?.title = selectedRepoTitle
+
         }
     }
 
