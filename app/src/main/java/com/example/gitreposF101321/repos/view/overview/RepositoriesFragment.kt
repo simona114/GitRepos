@@ -6,17 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gitreposF101321.databinding.FragmentRepositoriesBinding
-import com.example.gitreposF101321.repos.data.domainmodel.RepositoryModel
 import com.example.gitreposF101321.repos.viewmodel.RepositoriesViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class RepositoriesFragment : Fragment(), IRepositoryClickListener {
     private lateinit var binding: FragmentRepositoriesBinding
     private var repoAdapter: RepositoryAdapter? = null
 
-    private val reposViewModel by viewModel<RepositoriesViewModel>()
+    private val reposViewModel by sharedViewModel<RepositoriesViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,18 +32,6 @@ class RepositoriesFragment : Fragment(), IRepositoryClickListener {
 
         reposViewModel.requestReposWhenOnline()
 
-        //todo:replace with clicked repo's name
-        val testRepoName = "GitRepos"
-        reposViewModel.requestRepoCommitsWhenOnline(testRepoName)
-
-        //todo:move to details fragment
-        reposViewModel.liveDataCommits.observe(viewLifecycleOwner){
-            commitsList ->
-            commitsList.forEach {
-                commit ->
-                Log.d("mCommit", "${commit.message} ")
-            }
-        }
 
         reposViewModel.liveDataRepos.observe(viewLifecycleOwner) { reposList ->
             repoAdapter = RepositoryAdapter(this)
@@ -59,7 +47,12 @@ class RepositoriesFragment : Fragment(), IRepositoryClickListener {
 
     }
 
-    override fun onRepositoryClick(selectedRepositoryId: String) {
-        Log.d("RepositoriesFragment", "onRepositoryClick: $selectedRepositoryId")
+    override fun onRepositoryClick(selectedRepositoryTitle: String) {
+        Log.d("RepositoriesFragment", "onRepositoryClick: $selectedRepositoryTitle")
+        reposViewModel.liveDataSelectedRepoTitle.postValue(selectedRepositoryTitle)
+        val action =
+            RepositoriesFragmentDirections
+                .actionRepositoriesFragmentToRepositoryDetailsFragment()
+        findNavController().navigate(action)
     }
 }

@@ -21,12 +21,14 @@ class RepositoriesViewModel(
     private var _liveDataRepos = MutableLiveData<List<RepositoryModel>>()
     val liveDataRepos: LiveData<List<RepositoryModel>> = _liveDataRepos
 
+    var liveDataSelectedRepoTitle = MutableLiveData<String>()
+
     private var _liveDataCommits = MutableLiveData<List<CommitModel>>()
     val liveDataCommits: LiveData<List<CommitModel>> = _liveDataCommits
 
     fun requestReposWhenOnline() {
         viewModelScope.launch {
-        //todo:optimise the error handling
+            //todo:optimise the error handling
             try {
                 val result = repository.getNewRepos()
                 result.map { repoRemoteModel -> repoRemoteModel.toRepositoryModel() }
@@ -46,16 +48,16 @@ class RepositoriesViewModel(
         }
     }
 
-    fun requestRepoCommitsWhenOnline(repoName:String) {
+    fun requestRepoCommitsWhenOnline(repoName: String) {
         viewModelScope.launch {
-        //todo:optimise the error handling
+            //todo:optimise the error handling
             try {
                 val commitHolders = repository.getNewCommitsForRepo(repoName)
                 val result = commitHolders.map { it.commit }
-                result.map { commitRemoteModel ->  commitRemoteModel.toCommitModel()}.let {
-                    commitModelsList ->
-                    _liveDataCommits.postValue(commitModelsList)
-                }
+                result.map { commitRemoteModel -> commitRemoteModel.toCommitModel() }
+                    .let { commitModelsList ->
+                        _liveDataCommits.postValue(commitModelsList)
+                    }
 
 
             } catch (e: HttpException) {
@@ -67,6 +69,4 @@ class RepositoriesViewModel(
 
         }
     }
-
-
 }

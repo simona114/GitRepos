@@ -9,5 +9,14 @@
         android:id="@+id/repositoriesFragment"
         android:name="com.example.gitreposF101321.repos.view.overview.RepositoriesFragment"
         android:label="@string/repositories"
-        tools:layout="@layout/fragment_repositories" />
+        tools:layout="@layout/fragment_repositories" >
+        <action
+            android:id="@+id/action_repositoriesFragment_to_repositoryDetailsFragment"
+            app:destination="@id/repositoryDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/repositoryDetailsFragment"
+        android:name="com.example.gitreposF101321.repos.view.details.RepositoryDetailsFragment"
+        android:label="fragment_repository_details"
+        tools:layout="@layout/fragment_repository_details" />
 </navigation>

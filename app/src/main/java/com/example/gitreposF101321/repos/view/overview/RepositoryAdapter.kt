@@ -21,7 +21,7 @@ class RepositoryAdapter(var onClick: IRepositoryClickListener) :
                 tvRepositoryLanguage.text = repository.language
 
                 itemView.setOnClickListener {
-                    onClick.onRepositoryClick(repository.id)
+                    onClick.onRepositoryClick(repository.title)
                 }
             }
         }
