@@ -14,10 +14,10 @@ import com.example.gitreposF101321.repos.viewmodel.RepositoriesViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class RepositoriesFragment : Fragment(), IRepositoryClickListener {
-    private lateinit var binding: FragmentRepositoriesBinding
-    private var repoAdapter: RepositoryAdapter? = null
 
+    private lateinit var binding: FragmentRepositoriesBinding
     private val reposViewModel by sharedViewModel<RepositoriesViewModel>()
+    private var repoAdapter: RepositoryAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

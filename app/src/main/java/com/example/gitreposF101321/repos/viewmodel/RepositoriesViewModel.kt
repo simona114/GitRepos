@@ -23,8 +23,7 @@ class RepositoriesViewModel(
 
     var liveDataSelectedRepo  = MutableLiveData<RepositoryModel>()
 
-    private var _liveDataCommits = MutableLiveData<List<CommitModel>>()
-    val liveDataCommits: LiveData<List<CommitModel>> = _liveDataCommits
+    var liveDataCommits = MutableLiveData<List<CommitModel>>()
 
     fun requestReposWhenOnline() {
         viewModelScope.launch {
@@ -56,7 +55,7 @@ class RepositoriesViewModel(
                 val result = commitHolders.map { it.commit }
                 result.map { commitRemoteModel -> commitRemoteModel.toCommitModel() }
                     .let { commitModelsList ->
-                        _liveDataCommits.postValue(commitModelsList)
+                        liveDataCommits.postValue(commitModelsList)
                     }
 
 
