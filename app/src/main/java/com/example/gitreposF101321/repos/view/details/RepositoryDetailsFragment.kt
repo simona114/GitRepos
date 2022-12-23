@@ -1,15 +1,20 @@
 package com.example.gitreposF101321.repos.view.details
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.util.Log
+import android.text.SpannableStringBuilder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.text.bold
+import androidx.core.text.color
+import androidx.core.text.underline
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.gitreposF101321.R
 import com.example.gitreposF101321.databinding.FragmentRepositoryDetailsBinding
-import com.example.gitreposF101321.repos.view.overview.RepositoryAdapter
 import com.example.gitreposF101321.repos.viewmodel.RepositoriesViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
@@ -38,7 +43,18 @@ class RepositoryDetailsFragment : Fragment() {
             binding.apply {
                 tvRepoOwner.text = selectedRepo.owner.name
                 tvRepoLanguage.text = selectedRepo.language
-                tvRepoLink.text = selectedRepo.link
+
+                val customizedString = SpannableStringBuilder()
+                   .append(getString(R.string.repo_link)).
+                    bold {
+                    underline { append(selectedRepo.link) }
+                }
+                tvRepoLink.text = customizedString
+
+                tvRepoLink.setOnClickListener {
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(selectedRepo.link))
+                    startActivity(intent)
+                }
             }
 
         }
