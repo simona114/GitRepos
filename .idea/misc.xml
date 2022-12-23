@@ -6,6 +6,7 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/GitRepos/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
         <entry key="..\:/Users/User/AndroidStudioProjects/GitRepos/app/src/main/res/layout/activity_main.xml" value="0.4" />
         <entry key="..\:/Users/User/AndroidStudioProjects/GitRepos/app/src/main/res/layout/fragment_repositories.xml" value="0.4" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/GitRepos/app/src/main/res/layout/fragment_repository_details.xml" value="0.2" />
         <entry key="..\:/Users/User/AndroidStudioProjects/GitRepos/app/src/main/res/layout/item_repository.xml" value="0.2" />
         <entry key="..\:/Users/User/AndroidStudioProjects/GitRepos/app/src/main/res/xml/network_security_config.xml" value="0.1" />
       </map>

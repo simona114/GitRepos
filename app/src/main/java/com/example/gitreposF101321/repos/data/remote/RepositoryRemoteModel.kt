@@ -9,14 +9,23 @@ data class RepositoryRemoteModel(
     @SerializedName("id")
     val id: String,
     @SerializedName("name")
-    val name: String,
+    val title: String,
     @SerializedName("owner")
     val owner: RepositoryOwnerRemoteModel,
     @SerializedName("language")
     val language: String,
     @SerializedName("size")
-    val size: Int
+    val size: Int,
+    @SerializedName("html_url")
+    val link: String,
 )
 
 fun RepositoryRemoteModel.toRepositoryModel(): RepositoryModel =
-    RepositoryModel(this.id, this.name, this.language, this.size, this.owner.toRepositoryOwnerModel())
+    RepositoryModel(
+        this.id,
+        this.title,
+        this.owner.toRepositoryOwnerModel(),
+        this.language,
+        this.size,
+        this.link
+    )

@@ -28,16 +28,20 @@ class RepositoryDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        reposViewModel.liveDataSelectedRepoTitle.observe(viewLifecycleOwner) { selectedRepoTitle ->
-            reposViewModel.requestRepoCommitsWhenOnline(selectedRepoTitle)
+        reposViewModel.liveDataSelectedRepo.observe(viewLifecycleOwner) { selectedRepo ->
 
+            reposViewModel.requestRepoCommitsWhenOnline(selectedRepo.title)
+
+            binding.apply {
+                tvRepoOwner.text = selectedRepo.owner.name
+                tvRepoLanguage.text = selectedRepo.language
+                tvRepoLink.text = selectedRepo.link
+            }
         }
 
         //todo:delete
-        reposViewModel.liveDataCommits.observe(viewLifecycleOwner){
-                commitsList ->
-            commitsList.forEach {
-                    commit ->
+        reposViewModel.liveDataCommits.observe(viewLifecycleOwner) { commitsList ->
+            commitsList.forEach { commit ->
                 Log.d("mCommit", "${commit.message} ")
             }
         }
@@ -45,8 +49,8 @@ class RepositoryDetailsFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        reposViewModel.liveDataSelectedRepoTitle.observe(viewLifecycleOwner) { selectedRepoTitle ->
-            (activity as AppCompatActivity).supportActionBar?.title = selectedRepoTitle
+        reposViewModel.liveDataSelectedRepo.observe(viewLifecycleOwner) { selectedRepo ->
+            (activity as AppCompatActivity).supportActionBar?.title = selectedRepo.title
 
         }
     }

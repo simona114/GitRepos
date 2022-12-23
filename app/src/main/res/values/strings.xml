@@ -6,4 +6,6 @@
     <string name="repo_language">Language</string>
     <string name="repositories">GitHub Repositories</string>
     <string name="repository_details">Repository details</string>
+    <string name="repo_owner">owner</string>
+    <string name="repo_link">link</string>
 </resources>

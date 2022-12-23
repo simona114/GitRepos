@@ -21,7 +21,7 @@ class RepositoriesViewModel(
     private var _liveDataRepos = MutableLiveData<List<RepositoryModel>>()
     val liveDataRepos: LiveData<List<RepositoryModel>> = _liveDataRepos
 
-    var liveDataSelectedRepoTitle = MutableLiveData<String>()
+    var liveDataSelectedRepo  = MutableLiveData<RepositoryModel>()
 
     private var _liveDataCommits = MutableLiveData<List<CommitModel>>()
     val liveDataCommits: LiveData<List<CommitModel>> = _liveDataCommits

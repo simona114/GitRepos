@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gitreposF101321.databinding.FragmentRepositoriesBinding
+import com.example.gitreposF101321.repos.data.domainmodel.RepositoryModel
 import com.example.gitreposF101321.repos.viewmodel.RepositoriesViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
@@ -47,9 +48,8 @@ class RepositoriesFragment : Fragment(), IRepositoryClickListener {
 
     }
 
-    override fun onRepositoryClick(selectedRepositoryTitle: String) {
-        Log.d("RepositoriesFragment", "onRepositoryClick: $selectedRepositoryTitle")
-        reposViewModel.liveDataSelectedRepoTitle.postValue(selectedRepositoryTitle)
+    override fun onRepositoryClick(selectedRepository: RepositoryModel) {
+        reposViewModel.liveDataSelectedRepo.postValue(selectedRepository)
         val action =
             RepositoriesFragmentDirections
                 .actionRepositoriesFragmentToRepositoryDetailsFragment()
