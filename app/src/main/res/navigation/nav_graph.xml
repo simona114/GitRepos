@@ -17,6 +17,6 @@
     <fragment
         android:id="@+id/repositoryDetailsFragment"
         android:name="com.example.gitreposF101321.repos.view.details.RepositoryDetailsFragment"
-        android:label="fragment_repository_details"
+        android:label="@string/repository_details"
         tools:layout="@layout/fragment_repository_details" />
 </navigation>
