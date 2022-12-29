@@ -9,9 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.bold
-import androidx.core.text.color
 import androidx.core.text.underline
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gitreposF101321.R
 import com.example.gitreposF101321.databinding.FragmentRepositoryDetailsBinding
@@ -66,6 +66,12 @@ class RepositoryDetailsFragment : Fragment() {
             binding.rvRepositories.apply {
                 adapter = commitAdapter
                 layoutManager = LinearLayoutManager(activity)
+
+                val dividerItemDecoration = DividerItemDecoration(
+                    context,
+                    (layoutManager as LinearLayoutManager).orientation
+                )
+                addItemDecoration(dividerItemDecoration)
             }
 
         }
