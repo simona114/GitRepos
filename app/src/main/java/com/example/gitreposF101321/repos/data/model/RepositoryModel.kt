@@ -1,4 +1,4 @@
-package com.example.gitreposF101321.repos.data.domainmodel
+package com.example.gitreposF101321.repos.data.model
 
 import com.example.gitreposF101321.owner.RepositoryOwnerModel
 

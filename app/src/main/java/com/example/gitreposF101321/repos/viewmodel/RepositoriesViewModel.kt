@@ -6,10 +6,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.gitreposF101321.repos.data.ReposRepository
-import com.example.gitreposF101321.repos.data.domainmodel.CommitModel
-import com.example.gitreposF101321.repos.data.domainmodel.RepositoryModel
-import com.example.gitreposF101321.repos.data.remote.toCommitModel
-import com.example.gitreposF101321.repos.data.remote.toRepositoryModel
+import com.example.gitreposF101321.repos.data.model.CommitModel
+import com.example.gitreposF101321.repos.data.model.RepositoryModel
+import com.example.gitreposF101321.repos.data.model.toCommitModel
+import com.example.gitreposF101321.repos.data.model.toRepositoryModel
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 

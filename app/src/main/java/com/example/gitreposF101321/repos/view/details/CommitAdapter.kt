@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gitreposF101321.databinding.ItemCommitBinding
-import com.example.gitreposF101321.repos.data.domainmodel.CommitModel
+import com.example.gitreposF101321.repos.data.model.CommitModel
 
 class CommitAdapter() :
     RecyclerView.Adapter<CommitAdapter.CommitViewHolder>() {

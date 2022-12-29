@@ -1,8 +1,8 @@
-package com.example.gitreposF101321.repos.data.remote
+package com.example.gitreposF101321.repos.data.model
 
 import com.example.gitreposF101321.owner.RepositoryOwnerRemoteModel
 import com.example.gitreposF101321.owner.toRepositoryOwnerModel
-import com.example.gitreposF101321.repos.data.domainmodel.RepositoryModel
+import com.example.gitreposF101321.repos.data.model.RepositoryModel
 import com.google.gson.annotations.SerializedName
 
 data class RepositoryRemoteModel(

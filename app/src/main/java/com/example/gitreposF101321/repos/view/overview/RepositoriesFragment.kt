@@ -1,7 +1,6 @@
 package com.example.gitreposF101321.repos.view.overview
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gitreposF101321.databinding.FragmentRepositoriesBinding
-import com.example.gitreposF101321.repos.data.domainmodel.RepositoryModel
+import com.example.gitreposF101321.repos.data.model.RepositoryModel
 import com.example.gitreposF101321.repos.viewmodel.RepositoriesViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 

@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gitreposF101321.databinding.ItemRepositoryBinding
-import com.example.gitreposF101321.repos.data.domainmodel.RepositoryModel
+import com.example.gitreposF101321.repos.data.model.RepositoryModel
 
 class RepositoryAdapter(var onClick: IRepositoryClickListener) :
     RecyclerView.Adapter<RepositoryAdapter.RepositoryViewHolder>() {

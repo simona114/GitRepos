@@ -1,6 +1,6 @@
-package com.example.gitreposF101321.repos.data.remote
+package com.example.gitreposF101321.repos.data.model
 
-import com.example.gitreposF101321.repos.data.domainmodel.CommitModel
+import com.example.gitreposF101321.repos.data.model.CommitModel
 import com.google.gson.annotations.SerializedName
 
 class CommitRemoteModel(
