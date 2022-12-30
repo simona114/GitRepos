@@ -30,21 +30,18 @@ class RepositoriesFragment : Fragment(), IRepositoryClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //todo:monitor the internet connection
         reposViewModel.requestReposWhenOnline()
-
 
         reposViewModel.liveDataRepos.observe(viewLifecycleOwner) { reposList ->
             repoAdapter = RepositoryAdapter(this)
-
             repoAdapter?.injectList(reposList)
 
             binding.rvRepositories.apply {
                 adapter = repoAdapter
                 layoutManager = LinearLayoutManager(activity)
             }
-
         }
-
     }
 
     override fun onRepositoryClick(selectedRepository: RepositoryModel) {

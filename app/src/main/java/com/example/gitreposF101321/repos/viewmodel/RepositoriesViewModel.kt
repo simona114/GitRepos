@@ -21,7 +21,7 @@ class RepositoriesViewModel(
     private var _liveDataRepos = MutableLiveData<List<RepositoryModel>>()
     val liveDataRepos: LiveData<List<RepositoryModel>> = _liveDataRepos
 
-    var liveDataSelectedRepo  = MutableLiveData<RepositoryModel>()
+    var liveDataSelectedRepo = MutableLiveData<RepositoryModel>()
 
     var liveDataCommits = MutableLiveData<List<CommitModel>>()
 
@@ -35,15 +35,15 @@ class RepositoriesViewModel(
                         _liveDataRepos.postValue(
                             repoModelsList
                         )
-                    }
 
+                        repoModelsList.forEach { repo -> repository.saveRepo(repo) }
+                    }
             } catch (e: HttpException) {
                 e.message?.let { Log.e(ReposRepository::class.java.simpleName, it) }
             } catch (e: Exception) {
                 e.message?.let { Log.e(ReposRepository::class.java.simpleName, it) }
                 e.printStackTrace()
             }
-
         }
     }
 
@@ -57,8 +57,6 @@ class RepositoriesViewModel(
                     .let { commitModelsList ->
                         liveDataCommits.postValue(commitModelsList)
                     }
-
-
             } catch (e: HttpException) {
                 e.message?.let { Log.e(ReposRepository::class.java.simpleName, it) }
             } catch (e: Exception) {

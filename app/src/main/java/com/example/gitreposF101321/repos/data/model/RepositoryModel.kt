@@ -7,6 +7,5 @@ data class RepositoryModel(
     val title: String,
     val owner: RepositoryOwnerModel,
     val language: String,
-    val size: Int,
     val link: String,
 )
