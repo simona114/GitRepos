@@ -6,6 +6,11 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.example.gitreposF101321.owner.RepositoryOwnerModel
 import com.example.gitreposF101321.repos.data.model.RepositoryModel
+import com.example.gitreposF101321.utils.Util.Companion.COLUMN_INDEX_REPO_ID
+import com.example.gitreposF101321.utils.Util.Companion.COLUMN_INDEX_REPO_LANGUAGE
+import com.example.gitreposF101321.utils.Util.Companion.COLUMN_INDEX_REPO_LINK
+import com.example.gitreposF101321.utils.Util.Companion.COLUMN_INDEX_REPO_OWNER
+import com.example.gitreposF101321.utils.Util.Companion.COLUMN_INDEX_REPO_TITLE
 
 const val DATABASE_NAME = "repos.db"
 const val DATABASE_VERSION = 1
@@ -55,12 +60,11 @@ class MyDatabaseHelper(context: Context) :
         //traverse the results, if any
         if (cursor.moveToFirst()) {
             do {
-                //todo:extract the column indexes to utils
-                val repositoryId = cursor.getString(0)
-                val repositoryTitle = cursor.getString(1)
-                val repositoryOwner = cursor.getString(2)
-                val repositoryLanguage = cursor.getString(3)
-                val repositoryLink = cursor.getString(4)
+                val repositoryId = cursor.getString(COLUMN_INDEX_REPO_ID)
+                val repositoryTitle = cursor.getString(COLUMN_INDEX_REPO_TITLE)
+                val repositoryOwner = cursor.getString(COLUMN_INDEX_REPO_OWNER)
+                val repositoryLanguage = cursor.getString(COLUMN_INDEX_REPO_LANGUAGE)
+                val repositoryLink = cursor.getString(COLUMN_INDEX_REPO_LINK)
 
                 val repository = RepositoryModel(
                     repositoryId,
@@ -81,7 +85,7 @@ class MyDatabaseHelper(context: Context) :
 
     companion object {
         const val TABLE_REPOSITORIES = "repositories"
-        const val COLUMN_REPOSITORY_ID = "_ID"
+        const val COLUMN_REPOSITORY_ID = "repository_id"
         const val COLUMN_REPOSITORY_TITLE = "repository_title"
         const val COLUMN_REPOSITORY_OWNER = "repository_owner"
         const val COLUMN_REPOSITORY_LANGUAGE = "repository_language"
