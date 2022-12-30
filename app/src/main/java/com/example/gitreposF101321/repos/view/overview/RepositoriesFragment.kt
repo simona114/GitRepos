@@ -31,11 +31,17 @@ class RepositoriesFragment : Fragment(), IRepositoryClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         //todo:monitor the internet connection
-        reposViewModel.requestReposWhenOnline()
+        val isConnected = false
+        if(isConnected) {
+            reposViewModel.requestReposWhenOnline()
+        }
+        else{
+            reposViewModel.requestReposWhenOffline()
+        }
 
         reposViewModel.liveDataRepos.observe(viewLifecycleOwner) { reposList ->
             repoAdapter = RepositoryAdapter(this)
-            repoAdapter?.injectList(reposList)
+            repoAdapter?.injectList(reposList as List<RepositoryModel>)
 
             binding.rvRepositories.apply {
                 adapter = repoAdapter

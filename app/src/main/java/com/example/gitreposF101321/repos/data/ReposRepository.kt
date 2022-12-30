@@ -14,6 +14,9 @@ class ReposRepository(
     suspend fun getNewCommitsForRepo(repoName: String) =
         remoteDataSource.getAllCommitsForRepo(repoName)
 
+    fun getSavedRepos() =
+        localDataSource.getAllSavedRepos()
+
     fun saveRepo(repo: RepositoryModel) {
         localDataSource.saveRepository(repo)
     }

@@ -51,8 +51,8 @@ class MyDatabaseHelper(context: Context) :
         return insert != -1L
     }
 
-    fun getAllSavedRepositories(): List<RepositoryModel?> {
-        val productsResult: MutableList<RepositoryModel?> = ArrayList()
+    fun getAllSavedRepositories(): List<RepositoryModel> {
+        val productsResult: MutableList<RepositoryModel> = ArrayList()
         val queryString = "SELECT * FROM $TABLE_REPOSITORIES"
         val database: SQLiteDatabase = this.readableDatabase
 
