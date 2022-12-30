@@ -27,7 +27,6 @@ class RepositoriesViewModel(
 
     fun requestReposWhenOnline() {
         viewModelScope.launch {
-            //todo:optimise the error handling
             try {
                 val result = repository.getNewRepos()
                 result.map { repoRemoteModel -> repoRemoteModel.toRepositoryModel() }
@@ -38,18 +37,20 @@ class RepositoriesViewModel(
 
                         repoModelsList.forEach { repo -> repository.saveRepo(repo) }
                     }
-            } catch (e: HttpException) {
-                e.message?.let { Log.e(ReposRepository::class.java.simpleName, it) }
             } catch (e: Exception) {
-                e.message?.let { Log.e(ReposRepository::class.java.simpleName, it) }
-                e.printStackTrace()
+                if (e is HttpException) {
+                    e.message?.let { Log.e(ReposRepository::class.java.simpleName, it) }
+                } else {
+                    e.message?.let { Log.e(ReposRepository::class.java.simpleName, it) }
+                    e.printStackTrace()
+                }
             }
+
         }
     }
 
     fun requestRepoCommitsWhenOnline(repoName: String) {
         viewModelScope.launch {
-            //todo:optimise the error handling
             try {
                 val commitHolders = repository.getNewCommitsForRepo(repoName)
                 val result = commitHolders.map { it.commit }
@@ -57,11 +58,13 @@ class RepositoriesViewModel(
                     .let { commitModelsList ->
                         liveDataCommits.postValue(commitModelsList)
                     }
-            } catch (e: HttpException) {
-                e.message?.let { Log.e(ReposRepository::class.java.simpleName, it) }
             } catch (e: Exception) {
-                e.message?.let { Log.e(ReposRepository::class.java.simpleName, it) }
-                e.printStackTrace()
+                if (e is HttpException) {
+                    e.message?.let { Log.e(ReposRepository::class.java.simpleName, it) }
+                } else {
+                    e.message?.let { Log.e(ReposRepository::class.java.simpleName, it) }
+                    e.printStackTrace()
+                }
             }
 
         }
