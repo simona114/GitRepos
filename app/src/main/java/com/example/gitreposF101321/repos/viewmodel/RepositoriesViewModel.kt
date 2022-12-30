@@ -45,7 +45,6 @@ class RepositoriesViewModel(
                     e.printStackTrace()
                 }
             }
-
         }
     }
 
@@ -53,7 +52,7 @@ class RepositoriesViewModel(
         viewModelScope.launch {
             try {
                 val commitHolders = repository.getNewCommitsForRepo(repoName)
-                val result = commitHolders.map { it.commit }
+                val result = commitHolders.map { commitHolder -> commitHolder.commit }
                 result.map { commitRemoteModel -> commitRemoteModel.toCommitModel() }
                     .let { commitModelsList ->
                         liveDataCommits.postValue(commitModelsList)
@@ -66,7 +65,6 @@ class RepositoriesViewModel(
                     e.printStackTrace()
                 }
             }
-
         }
     }
 }
