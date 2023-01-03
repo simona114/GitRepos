@@ -31,7 +31,7 @@ class RepositoriesFragment : Fragment(), IRepositoryClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         //todo:monitor the internet connection
-        val isConnected = false
+        val isConnected = true
         if(isConnected) {
             reposViewModel.requestReposWhenOnline()
         }

@@ -52,7 +52,7 @@ class MyDatabaseHelper(context: Context) :
     }
 
     fun getAllSavedRepositories(): List<RepositoryModel> {
-        val productsResult: MutableList<RepositoryModel> = ArrayList()
+        val repositoriesResult: MutableList<RepositoryModel> = ArrayList()
         val queryString = "SELECT * FROM $TABLE_REPOSITORIES"
         val database: SQLiteDatabase = this.readableDatabase
 
@@ -73,14 +73,14 @@ class MyDatabaseHelper(context: Context) :
                     repositoryLanguage,
                     repositoryLink
                 )
-                productsResult.add(repository)
+                repositoriesResult.add(repository)
             } while (cursor.moveToNext())
         }
 
         cursor.close()
         database.close()
 
-        return productsResult
+        return repositoriesResult
     }
 
     companion object {
