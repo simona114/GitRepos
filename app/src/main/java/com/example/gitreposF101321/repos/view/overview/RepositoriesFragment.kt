@@ -56,13 +56,15 @@ class RepositoriesFragment : Fragment(), IRepositoryClickListener {
         myBroadcastReceiver = MyBroadcastReceiver()
 
 
-        // Get the value of AIRPLANE MODE
-        // from the system settings.
-        // This is an Integer. Airplane Mode
-        // is ON is its 1 and 0 otherwise.
-        // Toast the message (off/on)
+        /* Get the value of AIRPLANE MODE from the system settings.
+        This is an Integer
+         Airplane Mode  ON -> 1
+         Airplane Mode  OFF -> 0
+        */
         if(Settings.System.getInt(context?.contentResolver, Settings.Global.AIRPLANE_MODE_ON, 0) == 0){
             Log.d("my_service", "onViewCreated: Airplane mode is Off ")
+            requireActivity().stopService(Intent(context, MyService::class.java))
+
         } else {
             Log.d("my_service", "onViewCreated: Airplane mode is On ")
             requireActivity().startService(Intent(context, MyService::class.java))
@@ -96,13 +98,20 @@ class RepositoriesFragment : Fragment(), IRepositoryClickListener {
 //            intentFilter,
 //        )
 
-        context?.let { LocalBroadcastManager.getInstance(it).registerReceiver(myBroadcastReceiver,intentFilter) }
+        context?.let {
+            LocalBroadcastManager.getInstance(it)
+                .registerReceiver(myBroadcastReceiver, intentFilter)
+        }
+
     }
 
     override fun onPause() {
         super.onPause()
 //       activity?.unregisterReceiver(myBroadcastReceiver)
-        context?.let { LocalBroadcastManager.getInstance(it).unregisterReceiver(myBroadcastReceiver) }
+
+        context?.let {
+            LocalBroadcastManager.getInstance(it).unregisterReceiver(myBroadcastReceiver)
+        }
     }
 
     override fun onRepositoryClick(selectedRepository: RepositoryModel) {
