@@ -61,7 +61,12 @@ class RepositoriesFragment : Fragment(), IRepositoryClickListener {
          Airplane Mode  ON -> 1
          Airplane Mode  OFF -> 0
         */
-        if(Settings.System.getInt(context?.contentResolver, Settings.Global.AIRPLANE_MODE_ON, 0) == 0){
+        if (Settings.System.getInt(
+                context?.contentResolver,
+                Settings.Global.AIRPLANE_MODE_ON,
+                0
+            ) == 0
+        ) {
             Log.d("my_service", "onViewCreated: Airplane mode is Off ")
             requireActivity().stopService(Intent(context, MyService::class.java))
 
@@ -71,7 +76,7 @@ class RepositoriesFragment : Fragment(), IRepositoryClickListener {
         }
 
         //todo:monitor the internet connection
-        val isConnected = false
+        val isConnected = true
         if (isConnected) {
             reposViewModel.requestReposWhenOnline()
         } else {
@@ -93,25 +98,16 @@ class RepositoriesFragment : Fragment(), IRepositoryClickListener {
     override fun onResume() {
         super.onResume()
 
-//        activity?.registerReceiver(
-//            myBroadcastReceiver,
-//            intentFilter,
-//        )
-
-        context?.let {
-            LocalBroadcastManager.getInstance(it)
-                .registerReceiver(myBroadcastReceiver, intentFilter)
-        }
+        activity?.registerReceiver(
+            myBroadcastReceiver,
+            intentFilter,
+        )
 
     }
 
     override fun onPause() {
         super.onPause()
-//       activity?.unregisterReceiver(myBroadcastReceiver)
-
-        context?.let {
-            LocalBroadcastManager.getInstance(it).unregisterReceiver(myBroadcastReceiver)
-        }
+        activity?.unregisterReceiver(myBroadcastReceiver)
 
         requireActivity().stopService(Intent(context, MyService::class.java))
 
