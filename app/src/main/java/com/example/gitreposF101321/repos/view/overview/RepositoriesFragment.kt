@@ -32,7 +32,7 @@ class RepositoriesFragment : Fragment(), IRepositoryClickListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentRepositoriesBinding.inflate(inflater, container, false)
         return binding.root
@@ -41,7 +41,7 @@ class RepositoriesFragment : Fragment(), IRepositoryClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnSendBroadcast?.setOnClickListener {
+        binding.btnSendBroadcast.setOnClickListener {
             Log.d("broadcast", "onViewCreated: send broadcast")
 
             val intent = Intent(context, MyBroadcastReceiver::class.java)
@@ -112,6 +112,9 @@ class RepositoriesFragment : Fragment(), IRepositoryClickListener {
         context?.let {
             LocalBroadcastManager.getInstance(it).unregisterReceiver(myBroadcastReceiver)
         }
+
+        requireActivity().stopService(Intent(context, MyService::class.java))
+
     }
 
     override fun onRepositoryClick(selectedRepository: RepositoryModel) {
