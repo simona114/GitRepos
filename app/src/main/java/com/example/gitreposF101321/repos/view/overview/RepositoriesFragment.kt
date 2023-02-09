@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,6 +11,7 @@ import com.example.gitreposF101321.databinding.FragmentRepositoriesBinding
 import com.example.gitreposF101321.repos.data.model.RepositoryModel
 import com.example.gitreposF101321.repos.viewmodel.RepositoriesViewModel
 import com.example.gitreposF101321.utils.NetworkConnectivityObserver
+import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class RepositoriesFragment : Fragment(), IRepositoryClickListener {
@@ -36,11 +36,10 @@ class RepositoriesFragment : Fragment(), IRepositoryClickListener {
 
         networkConnectivityObserver?.observe(viewLifecycleOwner){ isNetworkAvailable->
             if(isNetworkAvailable) {
-                Toast.makeText(context, "connected", Toast.LENGTH_SHORT).show()
                 reposViewModel.requestReposWhenOnline()
             }
             else{
-                Toast.makeText(context, "not connected", Toast.LENGTH_SHORT).show()
+                Snackbar.make(binding.root, "No internet connection", Snackbar.LENGTH_LONG).show()
                 reposViewModel.requestReposWhenOffline()
             }
         }

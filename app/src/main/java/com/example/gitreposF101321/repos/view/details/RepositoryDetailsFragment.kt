@@ -7,7 +7,6 @@ import android.text.SpannableStringBuilder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.bold
 import androidx.core.text.underline
@@ -18,6 +17,7 @@ import com.example.gitreposF101321.R
 import com.example.gitreposF101321.databinding.FragmentRepositoryDetailsBinding
 import com.example.gitreposF101321.repos.viewmodel.RepositoriesViewModel
 import com.example.gitreposF101321.utils.NetworkConnectivityObserver
+import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
@@ -46,10 +46,10 @@ class RepositoryDetailsFragment : Fragment() {
 
             networkConnectivityObserver?.observe(viewLifecycleOwner) { isNetworkAvailable ->
                 if (isNetworkAvailable) {
-                    Toast.makeText(context, "connected", Toast.LENGTH_SHORT).show()
                     reposViewModel.requestRepoCommitsWhenOnline(selectedRepo.title)
                 } else {
-                    Toast.makeText(context, "not connected", Toast.LENGTH_SHORT).show()
+                    Snackbar.make(binding.root, "No internet connection", Snackbar.LENGTH_LONG)
+                        .show()
                     //todo: implement
                     //    reposViewModel.requestRepoCommitsWhenOffline()
                 }
