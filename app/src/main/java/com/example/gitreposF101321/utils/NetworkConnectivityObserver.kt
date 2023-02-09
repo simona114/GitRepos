@@ -1,15 +1,14 @@
 package com.example.gitreposF101321.utils
 
-import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkRequest
 import androidx.lifecycle.LiveData
 
-class CheckConnection(private val connectivityManager: ConnectivityManager) : LiveData<Boolean>() {
-    constructor(application: Application) : this(
-        application.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+class NetworkConnectivityObserver(private val connectivityManager: ConnectivityManager) : LiveData<Boolean>() {
+    constructor(context: Context) : this(
+        context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     )
 
     init {

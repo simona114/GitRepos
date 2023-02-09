@@ -7,6 +7,7 @@ import android.text.SpannableStringBuilder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.bold
 import androidx.core.text.underline
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gitreposF101321.R
 import com.example.gitreposF101321.databinding.FragmentRepositoryDetailsBinding
 import com.example.gitreposF101321.repos.viewmodel.RepositoriesViewModel
+import com.example.gitreposF101321.utils.NetworkConnectivityObserver
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
@@ -25,10 +27,13 @@ class RepositoryDetailsFragment : Fragment() {
     private val reposViewModel by sharedViewModel<RepositoriesViewModel>()
     private var commitAdapter: CommitAdapter? = null
 
+    private val networkConnectivityObserver by lazy { context?.let { NetworkConnectivityObserver(it) } }
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentRepositoryDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -38,7 +43,17 @@ class RepositoryDetailsFragment : Fragment() {
 
         reposViewModel.liveDataSelectedRepo.observe(viewLifecycleOwner) { selectedRepo ->
 
-            reposViewModel.requestRepoCommitsWhenOnline(selectedRepo.title)
+
+            networkConnectivityObserver?.observe(viewLifecycleOwner) { isNetworkAvailable ->
+                if (isNetworkAvailable) {
+                    Toast.makeText(context, "connected", Toast.LENGTH_SHORT).show()
+                    reposViewModel.requestRepoCommitsWhenOnline(selectedRepo.title)
+                } else {
+                    Toast.makeText(context, "not connected", Toast.LENGTH_SHORT).show()
+                    //todo: implement
+                    //    reposViewModel.requestRepoCommitsWhenOffline()
+                }
+            }
 
             binding.apply {
                 tvRepoOwner.text = getString(R.string.repo_owner, selectedRepo.owner.name)

@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gitreposF101321.databinding.FragmentRepositoriesBinding
 import com.example.gitreposF101321.repos.data.model.RepositoryModel
 import com.example.gitreposF101321.repos.viewmodel.RepositoriesViewModel
+import com.example.gitreposF101321.utils.NetworkConnectivityObserver
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class RepositoriesFragment : Fragment(), IRepositoryClickListener {
@@ -18,10 +20,12 @@ class RepositoriesFragment : Fragment(), IRepositoryClickListener {
     private val reposViewModel by sharedViewModel<RepositoriesViewModel>()
     private var repoAdapter: RepositoryAdapter? = null
 
+    private val networkConnectivityObserver by lazy { context?.let { NetworkConnectivityObserver(it) } }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentRepositoriesBinding.inflate(inflater, container, false)
         return binding.root
@@ -30,13 +34,15 @@ class RepositoriesFragment : Fragment(), IRepositoryClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //todo:monitor the internet connection
-        val isConnected = true
-        if(isConnected) {
-            reposViewModel.requestReposWhenOnline()
-        }
-        else{
-            reposViewModel.requestReposWhenOffline()
+        networkConnectivityObserver?.observe(viewLifecycleOwner){ isNetworkAvailable->
+            if(isNetworkAvailable) {
+                Toast.makeText(context, "connected", Toast.LENGTH_SHORT).show()
+                reposViewModel.requestReposWhenOnline()
+            }
+            else{
+                Toast.makeText(context, "not connected", Toast.LENGTH_SHORT).show()
+                reposViewModel.requestReposWhenOffline()
+            }
         }
 
         reposViewModel.liveDataRepos.observe(viewLifecycleOwner) { reposList ->
