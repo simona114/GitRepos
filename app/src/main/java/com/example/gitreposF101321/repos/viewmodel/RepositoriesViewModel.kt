@@ -26,9 +26,12 @@ class RepositoriesViewModel(
 
     var liveDataCommits = MutableLiveData<List<CommitModel>>()
 
+    val isLoading = MutableLiveData(false)
+
     fun requestReposWhenOnline() {
         viewModelScope.launch {
             try {
+                isLoading.postValue(true)
                 val result = repository.getNewRepos()
                 result.map { repoRemoteModel -> repoRemoteModel.toRepositoryModel() }
                     .let { repoModelsList ->
@@ -38,7 +41,11 @@ class RepositoriesViewModel(
 
                         repoModelsList.forEach { repo -> repository.saveRepo(repo) }
                     }
+                isLoading.postValue(false)
+
             } catch (e: Exception) {
+                isLoading.postValue(false)
+
                 if (e is HttpException) {
                     e.message?.let { Log.e(ReposRepository::class.java.simpleName, it) }
                 } else {
@@ -49,13 +56,18 @@ class RepositoriesViewModel(
         }
     }
 
-    fun requestReposWhenOffline(){
+    fun requestReposWhenOffline() {
         viewModelScope.launch {
             try {
-               val result =  repository.getSavedRepos()
+                isLoading.postValue(true)
+
+                val result = repository.getSavedRepos()
                 _liveDataRepos.postValue(result)
-            }
-            catch (e:Exception){
+
+                isLoading.postValue(false)
+            } catch (e: Exception) {
+                isLoading.postValue(false)
+
                 if (e is IOException) {
                     e.message?.let { Log.e(ReposRepository::class.java.simpleName, it) }
                 } else {
@@ -69,13 +81,20 @@ class RepositoriesViewModel(
     fun requestRepoCommitsWhenOnline(repoName: String) {
         viewModelScope.launch {
             try {
+                isLoading.postValue(true)
+
                 val commitHolders = repository.getNewCommitsForRepo(repoName)
                 val result = commitHolders.map { commitHolder -> commitHolder.commit }
                 result.map { commitRemoteModel -> commitRemoteModel.toCommitModel() }
                     .let { commitModelsList ->
                         liveDataCommits.postValue(commitModelsList)
                     }
+
+                isLoading.postValue(false)
+
             } catch (e: Exception) {
+                isLoading.postValue(false)
+
                 if (e is HttpException) {
                     e.message?.let { Log.e(ReposRepository::class.java.simpleName, it) }
                 } else {

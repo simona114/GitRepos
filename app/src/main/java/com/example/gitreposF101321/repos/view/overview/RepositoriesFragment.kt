@@ -34,32 +34,68 @@ class RepositoriesFragment : Fragment(), IRepositoryClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        networkConnectivityObserver?.observe(viewLifecycleOwner){ isNetworkAvailable->
-            if(isNetworkAvailable) {
+        networkConnectivityObserver?.observe(viewLifecycleOwner) { isNetworkAvailable ->
+            if (isNetworkAvailable) {
                 reposViewModel.requestReposWhenOnline()
-            }
-            else{
+            } else {
                 Snackbar.make(binding.root, "No internet connection", Snackbar.LENGTH_LONG).show()
                 reposViewModel.requestReposWhenOffline()
             }
         }
 
         reposViewModel.liveDataRepos.observe(viewLifecycleOwner) { reposList ->
-            repoAdapter = RepositoryAdapter(this)
-            repoAdapter?.injectList(reposList as List<RepositoryModel>)
 
-            binding.rvRepositories.apply {
-                adapter = repoAdapter
-                layoutManager = LinearLayoutManager(activity)
+           if(reposList.isEmpty())
+           {
+               binding.tvNoAvailableRepositories.visibility = View.VISIBLE
+           }
+            else{
+               repoAdapter = RepositoryAdapter(this)
+               repoAdapter?.injectList(reposList as List<RepositoryModel>)
+
+               binding.rvRepositories.apply {
+                   adapter = repoAdapter
+                   layoutManager = LinearLayoutManager(activity)
+               }
+           }
+
+        }
+
+        reposViewModel.isLoading.observe(viewLifecycleOwner)
+        { isLoading ->
+            if (isLoading) {
+                binding.apply{
+                    pbRepositories.visibility = View.VISIBLE
+                    pbRepositories.visibility = View.GONE
+                    tvNoAvailableRepositories.visibility = View.GONE
+                }
+
+
+            } else {
+                binding.pbRepositories.visibility = View.GONE
             }
+
         }
     }
 
     override fun onRepositoryClick(selectedRepository: RepositoryModel) {
-        reposViewModel.liveDataSelectedRepo.postValue(selectedRepository)
-        val action =
-            RepositoriesFragmentDirections
-                .actionRepositoriesFragmentToRepositoryDetailsFragment()
-        findNavController().navigate(action)
+
+        networkConnectivityObserver?.observe(viewLifecycleOwner) { isNetworkAvailable ->
+            if (isNetworkAvailable) {
+                reposViewModel.liveDataSelectedRepo.postValue(selectedRepository)
+                val action =
+                    RepositoriesFragmentDirections
+                        .actionRepositoriesFragmentToRepositoryDetailsFragment()
+                findNavController().navigate(action)
+            } else {
+                Snackbar.make(
+                    binding.root,
+                    "No internet connection. Cannot load repository details",
+                    Snackbar.LENGTH_LONG
+                ).show()
+
+            }
+        }
+
     }
 }

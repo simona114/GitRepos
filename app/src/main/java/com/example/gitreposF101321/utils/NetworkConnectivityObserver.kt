@@ -11,9 +11,9 @@ class NetworkConnectivityObserver(private val connectivityManager: ConnectivityM
         context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     )
 
-    init {
-        postValue(false)
-    }
+//    init {
+//        postValue(false)
+//    }
 
     private val networkCallback = createNetworkCallBack()
 
