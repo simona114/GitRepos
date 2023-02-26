@@ -1,6 +1,6 @@
 package com.example.gitreposF101321.networking
 
-import com.example.gitreposF101321.utils.Util.Companion.BASE_URL
+import com.example.gitreposF101321.utils.Constants.Companion.BASE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

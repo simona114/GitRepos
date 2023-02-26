@@ -6,11 +6,11 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.example.gitreposF101321.owner.RepositoryOwnerModel
 import com.example.gitreposF101321.repos.data.model.RepositoryModel
-import com.example.gitreposF101321.utils.Util.Companion.COLUMN_INDEX_REPO_ID
-import com.example.gitreposF101321.utils.Util.Companion.COLUMN_INDEX_REPO_LANGUAGE
-import com.example.gitreposF101321.utils.Util.Companion.COLUMN_INDEX_REPO_LINK
-import com.example.gitreposF101321.utils.Util.Companion.COLUMN_INDEX_REPO_OWNER
-import com.example.gitreposF101321.utils.Util.Companion.COLUMN_INDEX_REPO_TITLE
+import com.example.gitreposF101321.utils.Constants.Companion.COLUMN_INDEX_REPO_ID
+import com.example.gitreposF101321.utils.Constants.Companion.COLUMN_INDEX_REPO_LANGUAGE
+import com.example.gitreposF101321.utils.Constants.Companion.COLUMN_INDEX_REPO_LINK
+import com.example.gitreposF101321.utils.Constants.Companion.COLUMN_INDEX_REPO_OWNER
+import com.example.gitreposF101321.utils.Constants.Companion.COLUMN_INDEX_REPO_TITLE
 
 const val DATABASE_NAME = "repos.db"
 const val DATABASE_VERSION = 1

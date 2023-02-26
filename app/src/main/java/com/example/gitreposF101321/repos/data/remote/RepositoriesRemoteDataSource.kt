@@ -1,7 +1,7 @@
 package com.example.gitreposF101321.repos.data.remote
 
 import com.example.gitreposF101321.networking.GitReposService
-import com.example.gitreposF101321.utils.Util.Companion.USER_NAME
+import com.example.gitreposF101321.utils.Constants.Companion.USER_NAME
 
 class RepositoriesRemoteDataSource(private val apiClient:GitReposService) {
 

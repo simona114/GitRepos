@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentNavHost) as NavHostFragment
         navController = navHostFragment.navController
 
         //Enable navigation via back arrow on phone
