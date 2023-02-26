@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gitreposF101321.R
+import com.example.gitreposF101321.data.adapter.CommitAdapter
 import com.example.gitreposF101321.databinding.FragmentRepositoryDetailsBinding
 import com.example.gitreposF101321.ui.RepositoriesViewModel
 import com.example.gitreposF101321.utils.NetworkConnectivityObserver

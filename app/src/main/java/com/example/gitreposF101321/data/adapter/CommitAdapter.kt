@@ -1,4 +1,4 @@
-package com.example.gitreposF101321.ui.details
+package com.example.gitreposF101321.data.adapter
 
 
 import android.view.LayoutInflater
