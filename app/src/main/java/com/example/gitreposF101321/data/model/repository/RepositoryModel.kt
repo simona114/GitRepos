@@ -1,6 +1,6 @@
-package com.example.gitreposF101321.repos.data.model
+package com.example.gitreposF101321.data.model.repository
 
-import com.example.gitreposF101321.owner.RepositoryOwnerModel
+import com.example.gitreposF101321.data.model.owner.RepositoryOwnerModel
 
 data class RepositoryModel(
     val id: String,

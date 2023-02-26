@@ -1,8 +1,8 @@
-package com.example.gitreposF101321.repos.data
+package com.example.gitreposF101321.data
 
-import com.example.gitreposF101321.repos.data.local.RepositoriesLocalDataSource
-import com.example.gitreposF101321.repos.data.model.RepositoryModel
-import com.example.gitreposF101321.repos.data.remote.RepositoriesRemoteDataSource
+import com.example.gitreposF101321.data.local.RepositoriesLocalDataSource
+import com.example.gitreposF101321.data.model.repository.RepositoryModel
+import com.example.gitreposF101321.data.remote.RepositoriesRemoteDataSource
 
 class ReposRepository(
     private val remoteDataSource: RepositoriesRemoteDataSource,

@@ -1,15 +1,15 @@
-package com.example.gitreposF101321.repos.viewmodel
+package com.example.gitreposF101321.ui
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.gitreposF101321.repos.data.ReposRepository
-import com.example.gitreposF101321.repos.data.model.CommitModel
-import com.example.gitreposF101321.repos.data.model.RepositoryModel
-import com.example.gitreposF101321.repos.data.model.toCommitModel
-import com.example.gitreposF101321.repos.data.model.toRepositoryModel
+import com.example.gitreposF101321.data.ReposRepository
+import com.example.gitreposF101321.data.model.commit.CommitModel
+import com.example.gitreposF101321.data.model.repository.RepositoryModel
+import com.example.gitreposF101321.data.model.commit.toCommitModel
+import com.example.gitreposF101321.data.model.repository.toRepositoryModel
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException

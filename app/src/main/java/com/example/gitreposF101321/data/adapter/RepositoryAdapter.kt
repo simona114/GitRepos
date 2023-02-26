@@ -1,10 +1,11 @@
-package com.example.gitreposF101321.repos.view.overview
+package com.example.gitreposF101321.data.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gitreposF101321.databinding.ItemRepositoryBinding
-import com.example.gitreposF101321.repos.data.model.RepositoryModel
+import com.example.gitreposF101321.data.model.repository.RepositoryModel
+import com.example.gitreposF101321.ui.overview.IRepositoryClickListener
 
 class RepositoryAdapter(var onClick: IRepositoryClickListener) :
     RecyclerView.Adapter<RepositoryAdapter.RepositoryViewHolder>() {
@@ -14,9 +15,6 @@ class RepositoryAdapter(var onClick: IRepositoryClickListener) :
         RecyclerView.ViewHolder(repositoriesBinding.root) {
         fun bindRepositoryItem(repository: RepositoryModel) {
             repositoriesBinding.apply {
-                //provide access to the resources
-                val res = itemView.resources
-
                 tvRepositoryTitle.text = repository.title
                 tvRepositoryLanguage.text = repository.language
 

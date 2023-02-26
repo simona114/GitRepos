@@ -1,11 +1,11 @@
-package com.example.gitreposF101321.repos.data.local
+package com.example.gitreposF101321.data.local
 
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import com.example.gitreposF101321.owner.RepositoryOwnerModel
-import com.example.gitreposF101321.repos.data.model.RepositoryModel
+import com.example.gitreposF101321.data.model.owner.RepositoryOwnerModel
+import com.example.gitreposF101321.data.model.repository.RepositoryModel
 import com.example.gitreposF101321.utils.Constants.Companion.COLUMN_INDEX_REPO_ID
 import com.example.gitreposF101321.utils.Constants.Companion.COLUMN_INDEX_REPO_LANGUAGE
 import com.example.gitreposF101321.utils.Constants.Companion.COLUMN_INDEX_REPO_LINK

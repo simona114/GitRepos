@@ -1,4 +1,4 @@
-package com.example.gitreposF101321.repos.view.details
+package com.example.gitreposF101321.ui.details
 
 import android.content.Intent
 import android.net.Uri
@@ -10,13 +10,12 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.bold
 import androidx.core.text.underline
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gitreposF101321.R
 import com.example.gitreposF101321.databinding.FragmentRepositoryDetailsBinding
-import com.example.gitreposF101321.repos.viewmodel.RepositoriesViewModel
+import com.example.gitreposF101321.ui.RepositoriesViewModel
 import com.example.gitreposF101321.utils.NetworkConnectivityObserver
 import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel

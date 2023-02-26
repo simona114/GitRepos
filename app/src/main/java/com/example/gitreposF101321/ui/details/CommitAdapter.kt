@@ -1,11 +1,11 @@
-package com.example.gitreposF101321.repos.view.details
+package com.example.gitreposF101321.ui.details
 
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gitreposF101321.databinding.ItemCommitBinding
-import com.example.gitreposF101321.repos.data.model.CommitModel
+import com.example.gitreposF101321.data.model.commit.CommitModel
 
 class CommitAdapter() :
     RecyclerView.Adapter<CommitAdapter.CommitViewHolder>() {
@@ -15,11 +15,7 @@ class CommitAdapter() :
         RecyclerView.ViewHolder(commitsBinding.root) {
         fun bindRepositoryItem(commit: CommitModel) {
             commitsBinding.apply {
-                //provide access to the resources
-                val res = itemView.resources
-
                 tvCommitMessage.text = commit.message
-
             }
         }
     }

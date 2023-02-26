@@ -1,10 +1,11 @@
-package com.example.gitreposF101321
+package com.example.gitreposF101321.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.example.gitreposF101321.R
 import com.example.gitreposF101321.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

@@ -1,7 +1,7 @@
 package com.example.gitreposF101321.networking
 
-import com.example.gitreposF101321.repos.data.model.CommitResponseRemoteModel
-import com.example.gitreposF101321.repos.data.model.RepositoryRemoteModel
+import com.example.gitreposF101321.data.model.commit.CommitResponseRemoteModel
+import com.example.gitreposF101321.data.model.repository.RepositoryRemoteModel
 import retrofit2.http.GET
 import retrofit2.http.Path
 

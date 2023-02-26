@@ -1,4 +1,4 @@
-package com.example.gitreposF101321
+package com.example.gitreposF101321.di
 
 import android.app.Application
 import com.example.gitreposF101321.di.di

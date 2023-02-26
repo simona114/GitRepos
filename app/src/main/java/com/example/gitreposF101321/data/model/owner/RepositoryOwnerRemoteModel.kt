@@ -1,4 +1,4 @@
-package com.example.gitreposF101321.owner
+package com.example.gitreposF101321.data.model.owner
 
 import com.google.gson.annotations.SerializedName
 
