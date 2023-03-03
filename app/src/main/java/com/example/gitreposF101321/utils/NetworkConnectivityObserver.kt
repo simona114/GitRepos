@@ -6,7 +6,8 @@ import android.net.Network
 import android.net.NetworkRequest
 import androidx.lifecycle.LiveData
 
-class NetworkConnectivityObserver(private val connectivityManager: ConnectivityManager) : LiveData<Boolean>() {
+class NetworkConnectivityObserver(private val connectivityManager: ConnectivityManager) :
+    LiveData<Boolean>() {
     constructor(context: Context) : this(
         context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     )
@@ -20,7 +21,6 @@ class NetworkConnectivityObserver(private val connectivityManager: ConnectivityM
     //is being observed
     override fun onActive() {
         super.onActive()
-
         val request = NetworkRequest.Builder()
         connectivityManager.registerNetworkCallback(request.build(), networkCallback)
     }
@@ -29,7 +29,6 @@ class NetworkConnectivityObserver(private val connectivityManager: ConnectivityM
     override fun onInactive() {
         super.onInactive()
         connectivityManager.unregisterNetworkCallback(networkCallback)
-
     }
 
     private fun createNetworkCallBack() = object : ConnectivityManager.NetworkCallback() {
@@ -42,6 +41,5 @@ class NetworkConnectivityObserver(private val connectivityManager: ConnectivityM
             super.onLost(network)
             postValue(false)
         }
-
     }
 }
