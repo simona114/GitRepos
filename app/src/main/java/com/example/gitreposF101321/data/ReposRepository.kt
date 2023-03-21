@@ -2,6 +2,8 @@ package com.example.gitreposF101321.data
 
 import com.example.gitreposF101321.data.local.RepositoriesLocalDataSource
 import com.example.gitreposF101321.data.model.repository.RepositoryModel
+import com.example.gitreposF101321.data.model.repository.RepositoryRemoteModel
+import com.example.gitreposF101321.data.model.repository.toRepositoryModel
 import com.example.gitreposF101321.data.remote.RepositoriesRemoteDataSource
 
 class ReposRepository(
@@ -16,6 +18,10 @@ class ReposRepository(
 
     fun getSavedRepos() =
         localDataSource.getAllSavedRepos()
+
+    fun saveRepo(repo: RepositoryRemoteModel) {
+        localDataSource.saveRepository(repo.toRepositoryModel())
+    }
 
     fun saveRepo(repo: RepositoryModel) {
         localDataSource.saveRepository(repo)
