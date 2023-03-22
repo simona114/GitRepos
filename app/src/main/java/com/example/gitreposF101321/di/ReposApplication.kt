@@ -25,7 +25,7 @@ class ReposApplication : Application(), KoinComponent, Configuration.Provider {
             androidLogger()
             androidContext(this@ReposApplication)
             workManagerFactory()
-            modules(di, workerManagerModule)
+            modules(appModule, networkModule, dbModule, repositoryModule, workManagerModule)
         }
         delayedInit()
     }
@@ -36,7 +36,6 @@ class ReposApplication : Application(), KoinComponent, Configuration.Provider {
             .setWorkerFactory(get<KoinWorkerFactory>())
             .build()
     }
-
 
     /**
      * Sets up background tasks, expensive setup operations in a background
@@ -57,9 +56,10 @@ class ReposApplication : Application(), KoinComponent, Configuration.Provider {
             .setRequiredNetworkType(NetworkType.CONNECTED)
             .build()
 
-        val repeatingRequest = PeriodicWorkRequestBuilder<RefreshRepositoriesDataWorker>(1, TimeUnit.DAYS)
-            .setConstraints(constraints)
-            .build()
+        val repeatingRequest =
+            PeriodicWorkRequestBuilder<RefreshRepositoriesDataWorker>(1, TimeUnit.DAYS)
+                .setConstraints(constraints)
+                .build()
 
         WorkManager.getInstance(this).enqueueUniquePeriodicWork(
             RefreshRepositoriesDataWorker.WORK_NAME,

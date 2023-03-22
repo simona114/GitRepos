@@ -2,7 +2,6 @@ package com.example.gitreposF101321.utils
 
 class Constants {
     companion object {
-        const val BASE_URL = "https://api.github.com/"
         const val USER_NAME = "simona114"
 
         const val COLUMN_INDEX_REPO_ID = 0

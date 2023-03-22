@@ -5,9 +5,6 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.workmanager.dsl.worker
 import org.koin.dsl.module
 
-
-
-val workerManagerModule = module {
-//    single { WorkManager.getInstance(get()) }
+val workManagerModule = module {
     worker { RefreshRepositoriesDataWorker(androidContext(), get()) }
 }
