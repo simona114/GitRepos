@@ -1,10 +1,20 @@
 package com.example.gitreposF101321.di
 
-import com.example.gitreposF101321.data.local.MyDatabaseHelper
+import androidx.room.Room
+import com.example.gitreposF101321.data.local.ReposDatabase
+import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
 
 val dbModule = module {
     single {
-        MyDatabaseHelper(get())
+        Room.databaseBuilder(
+            androidApplication(),
+            ReposDatabase::class.java,
+            "repos_db"
+        ).build()
+    }
+    single {
+        val database = get<ReposDatabase>()
+        database.getRepoDao()
     }
 }

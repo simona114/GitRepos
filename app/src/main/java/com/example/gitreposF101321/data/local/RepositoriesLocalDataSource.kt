@@ -1,13 +1,12 @@
 package com.example.gitreposF101321.data.local
 
-import com.example.gitreposF101321.data.model.repository.RepositoryModel
+import kotlinx.coroutines.flow.Flow
 
-class RepositoriesLocalDataSource(private val dbHelper: MyDatabaseHelper) {
 
-    fun saveRepository(repository: RepositoryModel) {
-        dbHelper.saveRepository(repository)
+class RepositoriesLocalDataSource(private val dao: RepoDao) {
+    suspend fun saveRepo(repo: RepoEntity) {
+        dao.saveItem(repo)
     }
 
-    fun getAllSavedRepos() =
-        dbHelper.getAllSavedRepositories()
+    fun getAllSavedRepos(): Flow<List<RepoEntity>> = dao.getSavedItems()
 }

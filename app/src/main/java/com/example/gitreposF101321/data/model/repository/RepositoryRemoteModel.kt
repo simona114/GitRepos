@@ -1,5 +1,6 @@
 package com.example.gitreposF101321.data.model.repository
 
+import com.example.gitreposF101321.data.local.RepoEntity
 import com.example.gitreposF101321.data.model.owner.RepositoryOwnerRemoteModel
 import com.example.gitreposF101321.data.model.owner.toRepositoryOwnerModel
 import com.google.gson.annotations.SerializedName
@@ -25,3 +26,5 @@ fun RepositoryRemoteModel.toRepositoryModel(): RepositoryModel =
         this.language,
         this.link
     )
+
+fun RepositoryRemoteModel.toRepoEntity(): RepoEntity = RepoEntity(id, title,owner.name, language, link)

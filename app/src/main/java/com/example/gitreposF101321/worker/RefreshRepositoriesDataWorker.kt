@@ -3,7 +3,6 @@ package com.example.gitreposF101321.worker
 import android.content.Context
 import android.util.Log
 import androidx.work.CoroutineWorker
-import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import com.example.gitreposF101321.data.ReposRepository
 import com.example.gitreposF101321.data.model.repository.RepositoryRemoteModel
@@ -38,7 +37,7 @@ class RefreshRepositoriesDataWorker(
         return Result.success()
     }
 
-    private fun cacheRepo(repo: RepositoryRemoteModel) {
+    private suspend fun cacheRepo(repo: RepositoryRemoteModel) {
         try {
             repository.saveRepo(repo)
             Log.d("sync_repos_cache", "cacheRepo: successful")

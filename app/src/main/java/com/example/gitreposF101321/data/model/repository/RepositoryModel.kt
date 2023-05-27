@@ -1,5 +1,6 @@
 package com.example.gitreposF101321.data.model.repository
 
+import com.example.gitreposF101321.data.local.RepoEntity
 import com.example.gitreposF101321.data.model.owner.RepositoryOwnerModel
 
 data class RepositoryModel(
@@ -9,3 +10,4 @@ data class RepositoryModel(
     val language: String,
     val link: String,
 )
+fun RepositoryModel.toRepoEntity(): RepoEntity = RepoEntity(id, title,owner.name, language, link)

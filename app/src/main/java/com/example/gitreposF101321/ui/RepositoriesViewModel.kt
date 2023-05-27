@@ -6,10 +6,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.gitreposF101321.data.ReposRepository
+import com.example.gitreposF101321.data.local.toRepoModel
 import com.example.gitreposF101321.data.model.commit.CommitModel
 import com.example.gitreposF101321.data.model.repository.RepositoryModel
 import com.example.gitreposF101321.data.model.commit.toCommitModel
 import com.example.gitreposF101321.data.model.repository.toRepositoryModel
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
@@ -61,8 +64,18 @@ class RepositoriesViewModel(
             try {
                 isLoading.postValue(true)
 
-                val result = repository.getSavedRepos()
-                _liveDataRepos.postValue(result)
+                repository.getSavedRepos()
+                    .map { repoEntitiesList ->
+                        repoEntitiesList.map { repoEntity ->
+                            repoEntity.toRepoModel()
+                        }
+                    }
+                    .catch {
+                        isLoading.postValue(false)
+                    }.collect { repoEntitiesList ->
+                        _liveDataRepos.postValue(repoEntitiesList)
+                        isLoading.postValue(false)
+                    }
 
                 isLoading.postValue(false)
             } catch (e: Exception) {

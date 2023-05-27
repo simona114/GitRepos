@@ -1,10 +1,12 @@
 package com.example.gitreposF101321.data
 
+import com.example.gitreposF101321.data.local.RepoEntity
 import com.example.gitreposF101321.data.local.RepositoriesLocalDataSource
 import com.example.gitreposF101321.data.model.repository.RepositoryModel
 import com.example.gitreposF101321.data.model.repository.RepositoryRemoteModel
-import com.example.gitreposF101321.data.model.repository.toRepositoryModel
+import com.example.gitreposF101321.data.model.repository.toRepoEntity
 import com.example.gitreposF101321.data.remote.RepositoriesRemoteDataSource
+import kotlinx.coroutines.flow.Flow
 
 class ReposRepository(
     private val remoteDataSource: RepositoriesRemoteDataSource,
@@ -16,14 +18,12 @@ class ReposRepository(
     suspend fun getNewCommitsForRepo(repoName: String) =
         remoteDataSource.getAllCommitsForRepo(repoName)
 
-    fun getSavedRepos() =
-        localDataSource.getAllSavedRepos()
+    fun getSavedRepos(): Flow<List<RepoEntity>> = localDataSource.getAllSavedRepos()
 
-    fun saveRepo(repo: RepositoryRemoteModel) {
-        localDataSource.saveRepository(repo.toRepositoryModel())
+    suspend fun saveRepo(repo: RepositoryModel) {
+        localDataSource.saveRepo(repo.toRepoEntity())
     }
-
-    fun saveRepo(repo: RepositoryModel) {
-        localDataSource.saveRepository(repo)
+    suspend fun saveRepo(repo:RepositoryRemoteModel){
+        localDataSource.saveRepo(repo.toRepoEntity())
     }
 }
