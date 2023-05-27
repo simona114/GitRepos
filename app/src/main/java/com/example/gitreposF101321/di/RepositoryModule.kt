@@ -19,13 +19,13 @@ object RepositoryModule {
     @Singleton
     fun providesLocalDataSource(dao: RepoDao) = RepositoriesLocalDataSource(dao)
 
-//    @Provides
-//    @Singleton
-//    fun providesRemoteDataSource(service: GitReposService) = RepositoriesRemoteDataSource(service)
+    @Provides
+    @Singleton
+    fun providesRemoteDataSource(service: GitReposService) = RepositoriesRemoteDataSource(service)
 
     @Provides
     @Singleton
-    fun providesRepository(localDataSource: RepositoriesLocalDataSource) =
-        ReposRepository(localDataSource)
+    fun providesRepository(localDataSource: RepositoriesLocalDataSource, remoteDataSource: RepositoriesRemoteDataSource) =
+        ReposRepository(remoteDataSource ,localDataSource)
     //todo:fix the order
 }
