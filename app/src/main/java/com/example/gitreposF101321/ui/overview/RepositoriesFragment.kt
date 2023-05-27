@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gitreposF101321.databinding.FragmentRepositoriesBinding
@@ -20,8 +21,7 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 class RepositoriesFragment : Fragment(), IRepositoryClickListener {
 
     private lateinit var binding: FragmentRepositoriesBinding
-    //Todo: use hilt viewmodel
-    private val reposViewModel by sharedViewModel<RepositoriesViewModel>()
+    private val reposViewModel: RepositoriesViewModel by viewModels()
     private var repoAdapter: RepositoryAdapter? = null
 
     private val networkConnectivityObserver by lazy { context?.let { NetworkConnectivityObserver(it) } }
