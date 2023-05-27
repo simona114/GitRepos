@@ -11,13 +11,16 @@ import com.example.gitreposF101321.data.model.commit.CommitModel
 import com.example.gitreposF101321.data.model.repository.RepositoryModel
 import com.example.gitreposF101321.data.model.commit.toCommitModel
 import com.example.gitreposF101321.data.model.repository.toRepositoryModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
+import javax.inject.Inject
 
-class RepositoriesViewModel(
+@HiltViewModel
+class RepositoriesViewModel @Inject constructor(
     private val repository: ReposRepository
 ) :
     ViewModel() {

@@ -13,11 +13,14 @@ import com.example.gitreposF101321.data.model.repository.RepositoryModel
 import com.example.gitreposF101321.ui.RepositoriesViewModel
 import com.example.gitreposF101321.utils.NetworkConnectivityObserver
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
+@AndroidEntryPoint
 class RepositoriesFragment : Fragment(), IRepositoryClickListener {
 
     private lateinit var binding: FragmentRepositoriesBinding
+    //Todo: use hilt viewmodel
     private val reposViewModel by sharedViewModel<RepositoriesViewModel>()
     private var repoAdapter: RepositoryAdapter? = null
 

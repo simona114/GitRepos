@@ -5,8 +5,9 @@ import com.example.gitreposF101321.data.model.repository.RepositoryModel
 import com.example.gitreposF101321.data.model.repository.RepositoryRemoteModel
 import com.example.gitreposF101321.data.model.repository.toRepoEntity
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class ReposRepository(
+class ReposRepository  @Inject constructor(
     private val remoteDataSource: RepositoriesRemoteDataSource,
     private val localDataSource: RepositoriesLocalDataSource
 ) {

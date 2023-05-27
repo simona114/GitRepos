@@ -2,39 +2,35 @@ package com.example.gitreposF101321.di
 
 import android.app.Application
 import android.util.Log
-import androidx.work.*
+import androidx.hilt.work.HiltWorkerFactory
+import androidx.work.Configuration
+import androidx.work.Constraints
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.NetworkType
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
 import com.example.gitreposF101321.worker.RefreshRepositoriesDataWorker
+import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import org.koin.android.ext.koin.androidContext
-import org.koin.android.ext.koin.androidLogger
-import org.koin.androidx.workmanager.factory.KoinWorkerFactory
-import org.koin.androidx.workmanager.koin.workManagerFactory
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.get
-import org.koin.core.context.startKoin
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
-class ReposApplication : Application(), KoinComponent, Configuration.Provider {
+@HiltAndroidApp
+class ReposApplication : Application(), Configuration.Provider {
     private val applicationScope = CoroutineScope(Dispatchers.IO)
+
+    @Inject
+    lateinit var workerFactory: HiltWorkerFactory
+
+    override fun getWorkManagerConfiguration(): Configuration {
+        return Configuration.Builder().setWorkerFactory(workerFactory).build()
+    }
 
     override fun onCreate() {
         super.onCreate()
-        startKoin {
-            androidLogger()
-            androidContext(this@ReposApplication)
-            workManagerFactory()
-            modules(appModule, networkModule, dbModule, repositoryModule, workManagerModule)
-        }
         delayedInit()
-    }
-
-
-    override fun getWorkManagerConfiguration(): Configuration {
-        return Configuration.Builder()
-            .setWorkerFactory(get<KoinWorkerFactory>())
-            .build()
     }
 
     /**
@@ -43,7 +39,7 @@ class ReposApplication : Application(), KoinComponent, Configuration.Provider {
      */
     private fun delayedInit() {
         applicationScope.launch {
-            setUpSynchronizingReposWork()
+//            setUpSynchronizingReposWork()
         }
     }
 
