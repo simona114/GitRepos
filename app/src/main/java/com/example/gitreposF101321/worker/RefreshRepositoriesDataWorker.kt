@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.Log
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import com.example.gitreposF101321.data.ReposRepository
+import com.example.gitreposF101321.data.repository.ReposRepository
 import com.example.gitreposF101321.data.model.repository.RepositoryRemoteModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

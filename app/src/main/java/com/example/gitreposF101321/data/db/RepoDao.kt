@@ -1,4 +1,4 @@
-package com.example.gitreposF101321.data.local
+package com.example.gitreposF101321.data.db
 
 import androidx.room.Dao
 import androidx.room.Insert

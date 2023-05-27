@@ -1,4 +1,4 @@
-package com.example.gitreposF101321.data.remote
+package com.example.gitreposF101321.data.repository
 
 import com.example.gitreposF101321.networking.GitReposService
 import com.example.gitreposF101321.utils.Constants.Companion.USER_NAME

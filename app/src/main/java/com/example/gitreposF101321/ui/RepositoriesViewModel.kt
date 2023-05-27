@@ -5,8 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.gitreposF101321.data.ReposRepository
-import com.example.gitreposF101321.data.local.toRepoModel
+import com.example.gitreposF101321.data.repository.ReposRepository
+import com.example.gitreposF101321.data.db.toRepoModel
 import com.example.gitreposF101321.data.model.commit.CommitModel
 import com.example.gitreposF101321.data.model.repository.RepositoryModel
 import com.example.gitreposF101321.data.model.commit.toCommitModel

@@ -1,6 +1,6 @@
 package com.example.gitreposF101321.data.model.repository
 
-import com.example.gitreposF101321.data.local.RepoEntity
+import com.example.gitreposF101321.data.db.RepoEntity
 import com.example.gitreposF101321.data.model.owner.RepositoryOwnerRemoteModel
 import com.example.gitreposF101321.data.model.owner.toRepositoryOwnerModel
 import com.google.gson.annotations.SerializedName

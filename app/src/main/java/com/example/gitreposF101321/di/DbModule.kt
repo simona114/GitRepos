@@ -1,7 +1,7 @@
 package com.example.gitreposF101321.di
 
 import androidx.room.Room
-import com.example.gitreposF101321.data.local.ReposDatabase
+import com.example.gitreposF101321.data.db.ReposDatabase
 import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
 
