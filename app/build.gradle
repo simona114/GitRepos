@@ -55,7 +55,7 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
 
     // FragmentContainerView
-    implementation 'androidx.fragment:fragment-ktx:1.5.5'
+    implementation 'androidx.fragment:fragment-ktx:1.5.7'
 
     // Okhttp
     implementation(platform("com.squareup.okhttp3:okhttp-bom:4.10.0"))
