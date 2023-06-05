@@ -52,7 +52,7 @@ class RepositoryDetailsFragment : Fragment() {
                 if (isNetworkAvailable) {
                     reposViewModel.requestRepoCommitsWhenOnline(selectedRepo.title)
                 } else {
-                    Snackbar.make(binding.root, R.string.no_available_repositories, Snackbar.LENGTH_LONG)
+                    Snackbar.make(binding.root, R.string.no_available_network, Snackbar.LENGTH_LONG)
                         .show()
                 }
             }

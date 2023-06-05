@@ -8,7 +8,7 @@
     <string name="repo_link">link: </string>
     <string name="repo_commits">commits:</string>
 
-    <string name="no_available_commits">No available commits</string>
+    <string name="no_available_commits">"No internet connection. Cannot load repository details"</string>
     <string name="no_available_repositories">No available repositories</string>
 
     <string name="no_available_network">No internet connection</string>

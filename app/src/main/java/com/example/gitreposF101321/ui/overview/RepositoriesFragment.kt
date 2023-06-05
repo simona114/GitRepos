@@ -93,7 +93,7 @@ class RepositoriesFragment : Fragment(), IRepositoryClickListener {
             } else {
                 Snackbar.make(
                     binding.root,
-                    "No internet connection. Cannot load repository details",
+                    R.string.no_available_commits,
                     Snackbar.LENGTH_LONG
                 ).show()
 
