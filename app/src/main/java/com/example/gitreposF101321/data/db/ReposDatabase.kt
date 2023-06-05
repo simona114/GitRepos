@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import kotlinx.coroutines.InternalCoroutinesApi
 
 
-@Database(entities = [RepoEntity::class], version = 2)
+@Database(entities = [RepoEntity::class], version = 2, exportSchema = false)
 abstract class ReposDatabase: RoomDatabase() {
 
     abstract fun getRepoDao(): RepoDao

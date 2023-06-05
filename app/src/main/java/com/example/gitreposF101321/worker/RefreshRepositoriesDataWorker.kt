@@ -2,22 +2,23 @@ package com.example.gitreposF101321.worker
 
 import android.content.Context
 import android.util.Log
+import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.example.gitreposF101321.data.repository.ReposRepository
 import com.example.gitreposF101321.data.model.repository.RepositoryRemoteModel
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedInject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 import java.io.IOException
 
-class RefreshRepositoriesDataWorker(
-    context: Context,
-    workerParameters: WorkerParameters,
-) : CoroutineWorker(context, workerParameters) , KoinComponent {
-
-    private val repository: ReposRepository by inject()
+@HiltWorker
+class RefreshRepositoriesDataWorker @AssistedInject constructor(
+    @Assisted context: Context,
+    @Assisted workerParameters: WorkerParameters,
+    private val repository: ReposRepository,
+) : CoroutineWorker(context, workerParameters) {
 
     companion object {
         const val WORK_NAME = "com.example.gitReposF101321.worker.RefreshRepositoriesDataWorker"
