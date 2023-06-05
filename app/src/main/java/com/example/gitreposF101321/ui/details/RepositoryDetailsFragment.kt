@@ -54,8 +54,6 @@ class RepositoryDetailsFragment : Fragment() {
                 } else {
                     Snackbar.make(binding.root, R.string.no_available_repositories, Snackbar.LENGTH_LONG)
                         .show()
-                    //todo: implement
-                    //    reposViewModel.requestRepoCommitsWhenOffline()
                 }
             }
 
