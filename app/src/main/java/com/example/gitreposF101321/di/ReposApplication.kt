@@ -39,7 +39,7 @@ class ReposApplication : Application(), Configuration.Provider {
      */
     private fun delayedInit() {
         applicationScope.launch {
-//            setUpSynchronizingReposWork()
+            setUpSynchronizingReposWork()
         }
     }
 
