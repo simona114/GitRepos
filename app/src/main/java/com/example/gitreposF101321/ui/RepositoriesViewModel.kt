@@ -12,7 +12,9 @@ import com.example.gitreposF101321.data.model.repository.RepositoryModel
 import com.example.gitreposF101321.data.model.commit.toCommitModel
 import com.example.gitreposF101321.data.model.repository.toRepositoryModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -68,6 +70,7 @@ class RepositoriesViewModel @Inject constructor(
                 isLoading.postValue(true)
 
                 repository.getSavedRepos()
+                    .flowOn(Dispatchers.IO)
                     .map { repoEntitiesList ->
                         repoEntitiesList.map { repoEntity ->
                             repoEntity.toRepoModel()
@@ -98,7 +101,6 @@ class RepositoriesViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 isLoading.postValue(true)
-
                 val commitHolders = repository.getNewCommitsForRepo(repoName)
                 val result = commitHolders.map { commitHolder -> commitHolder.commit }
                 result.map { commitRemoteModel -> commitRemoteModel.toCommitModel() }

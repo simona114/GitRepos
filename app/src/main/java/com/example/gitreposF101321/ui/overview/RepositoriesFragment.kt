@@ -5,9 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.gitreposF101321.R
 import com.example.gitreposF101321.databinding.FragmentRepositoriesBinding
 import com.example.gitreposF101321.data.adapter.RepositoryAdapter
 import com.example.gitreposF101321.data.model.repository.RepositoryModel
@@ -15,13 +16,12 @@ import com.example.gitreposF101321.ui.RepositoriesViewModel
 import com.example.gitreposF101321.utils.NetworkConnectivityObserver
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 @AndroidEntryPoint
 class RepositoriesFragment : Fragment(), IRepositoryClickListener {
 
     private lateinit var binding: FragmentRepositoriesBinding
-    private val reposViewModel: RepositoriesViewModel by viewModels()
+    private val reposViewModel: RepositoriesViewModel by activityViewModels()
     private var repoAdapter: RepositoryAdapter? = null
 
     private val networkConnectivityObserver by lazy { context?.let { NetworkConnectivityObserver(it) } }
@@ -42,7 +42,7 @@ class RepositoriesFragment : Fragment(), IRepositoryClickListener {
             if (isNetworkAvailable) {
                 reposViewModel.requestReposWhenOnline()
             } else {
-                Snackbar.make(binding.root, "No internet connection", Snackbar.LENGTH_LONG).show()
+                Snackbar.make(binding.root, R.string.no_available_network, Snackbar.LENGTH_LONG).show()
                 reposViewModel.requestReposWhenOffline()
             }
         }
@@ -83,7 +83,6 @@ class RepositoriesFragment : Fragment(), IRepositoryClickListener {
     }
 
     override fun onRepositoryClick(selectedRepository: RepositoryModel) {
-
         networkConnectivityObserver?.observe(viewLifecycleOwner) { isNetworkAvailable ->
             if (isNetworkAvailable) {
                 reposViewModel.liveDataSelectedRepo.postValue(selectedRepository)

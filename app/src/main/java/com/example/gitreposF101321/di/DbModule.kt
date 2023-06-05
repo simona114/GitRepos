@@ -8,8 +8,6 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import org.koin.android.ext.koin.androidApplication
-import org.koin.dsl.module
 import javax.inject.Singleton
 
 @Module
@@ -22,7 +20,7 @@ object DbModule {
         @ApplicationContext context: Context
     ) = Room.databaseBuilder(
         context, ReposDatabase::class.java,
-        "android_task_db"
+        "repos_db"
     ).build()
 
     @Provides

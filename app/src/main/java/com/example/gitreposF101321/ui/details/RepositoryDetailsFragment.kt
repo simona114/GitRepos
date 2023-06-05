@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.bold
 import androidx.core.text.underline
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gitreposF101321.R
@@ -21,15 +21,13 @@ import com.example.gitreposF101321.ui.RepositoriesViewModel
 import com.example.gitreposF101321.utils.NetworkConnectivityObserver
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 @AndroidEntryPoint
 class RepositoryDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentRepositoryDetailsBinding
-    //Todo: use hilt viewmodel
-//    private val reposViewModel by sharedViewModel<RepositoriesViewModel>()
-    private val reposViewModel: RepositoriesViewModel by viewModels()
+
+    private val reposViewModel: RepositoriesViewModel by activityViewModels()
 
     private var commitAdapter: CommitAdapter? = null
 
@@ -54,7 +52,7 @@ class RepositoryDetailsFragment : Fragment() {
                 if (isNetworkAvailable) {
                     reposViewModel.requestRepoCommitsWhenOnline(selectedRepo.title)
                 } else {
-                    Snackbar.make(binding.root, "No internet connection", Snackbar.LENGTH_LONG)
+                    Snackbar.make(binding.root, R.string.no_available_repositories, Snackbar.LENGTH_LONG)
                         .show()
                     //todo: implement
                     //    reposViewModel.requestRepoCommitsWhenOffline()

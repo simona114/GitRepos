@@ -10,4 +10,6 @@
 
     <string name="no_available_commits">No available commits</string>
     <string name="no_available_repositories">No available repositories</string>
+
+    <string name="no_available_network">No internet connection</string>
 </resources>
