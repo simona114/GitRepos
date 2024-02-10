@@ -1,0 +1,11 @@
+appId: com.example.gitreposF101321
+---
+- launchApp:
+    clearState: true
+- scrollUntilVisible:
+    element: "StudentProgramsInIT"
+    direction: DOWN
+- tapOn:
+    text: "StudentProgramsInIT"
+- tapOn:
+    text: "simona114/StudentProgramsInIT"
